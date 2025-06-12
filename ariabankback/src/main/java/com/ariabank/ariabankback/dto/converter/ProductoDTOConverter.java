@@ -18,15 +18,15 @@ import org.springframework.stereotype.Component;
 public class ProductoDTOConverter {
 	
 	private final ModelMapper modelMapper;
-	
-	
+
+
 	@PostConstruct
 	public void init() {
 		modelMapper.addMappings(new PropertyMap<Producto, ProductoDTO>() {
 
 			@Override
 			protected void configure() {
-				map().setCategoria(source.getNombre());
+				map().setCategoria(source.getCategoria().getNombre());
 			}
 		});
 	}
@@ -34,6 +34,15 @@ public class ProductoDTOConverter {
 	public ProductoDTO convertToDto(Producto producto) {
 		return modelMapper.map(producto, ProductoDTO.class);
 		
+	}
+
+	public ProductoDTO convertProductoToProductoDto(Producto producto) {
+		return ProductoDTO.builder()
+				.nombre(producto.getNombre())
+				.imagen(producto.getImagen())
+				.categoria(producto.getCategoria().getNombre())
+				.id(producto.getId())
+				.build();
 	}
 
 }

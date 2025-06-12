@@ -44,7 +44,7 @@ public class ProductoController {
 			throw new ProductoNotFoundException();
 		} else {
 
-			Page<ProductoDTO> dtoList = result.map(productoDTOConverter::convertToDto);
+			Page<ProductoDTO> dtoList = result.map(productoDTOConverter::convertProductoToProductoDto);
 			UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(request.getRequestURL().toString());
 
 			return ResponseEntity.ok().header("link", paginationLinksUtils.createLinkHeader(dtoList, uriBuilder))

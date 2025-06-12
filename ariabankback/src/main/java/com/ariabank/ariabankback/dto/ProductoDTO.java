@@ -1,10 +1,11 @@
 package com.ariabank.ariabankback.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class ProductoDTO {
 	
 	private long id;
